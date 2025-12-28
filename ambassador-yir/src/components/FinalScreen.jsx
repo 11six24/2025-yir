@@ -12,7 +12,7 @@ function FinalScreen({ data, onReset }) {
 
         <h2 className="section-title">Let's make next year even bigger</h2>
         <p className="final-text">
-          Ready to take your ambassador game to the next level?
+          Stay tuned for more details about the W212 and a bigger announcement soon...
         </p>
         <div className="final-actions">
          {/*  <a
