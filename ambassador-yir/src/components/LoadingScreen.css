@@ -1,0 +1,29 @@
+.loading-screen {
+  background: linear-gradient(135deg, var(--merc-black) 0%, var(--merc-dark-gray) 100%);
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--merc-dark-gray);
+  border-top: 4px solid var(--merc-teal);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-content p {
+  font-size: 1.2rem;
+  color: var(--merc-silver);
+}

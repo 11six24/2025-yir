@@ -1,0 +1,121 @@
+:root {
+  --merc-teal: #00D2BE;
+  --merc-silver: #C0C0C0;
+  --merc-black: #0A0A0A;
+  --merc-white: #FFFFFF;
+  --merc-dark-gray: #1A1A1A;
+  --merc-light-gray: #E5E5E5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--merc-black);
+  color: var(--merc-white);
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.year-in-review {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.screen-content {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--merc-white);
+  text-transform: lowercase;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, var(--merc-teal) 0%, #00A89B 100%);
+  color: var(--merc-black);
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 210, 190, 0.3);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: var(--merc-silver);
+  border: 2px solid var(--merc-silver);
+}
+
+.cta-button.secondary:hover {
+  background: var(--merc-silver);
+  color: var(--merc-black);
+  box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2);
+}
+
+.landing {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.landing h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--merc-teal), var(--merc-silver));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.landing p {
+  font-size: 1.2rem;
+  color: var(--merc-silver);
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .landing h1 {
+    font-size: 2rem;
+  }
+}

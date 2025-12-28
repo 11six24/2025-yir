@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+ambassador-yir/node_modules/
+
+# Build outputs
+dist/
+ambassador-yir/dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Excel source file (contains sensitive data)
+uppromote_top_affiliate_102736 (16).xlsx
+
+# Generated CSV with links (contains UUIDs - optional to exclude)
+ambassador-links.csv

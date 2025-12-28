@@ -1,0 +1,20 @@
+.error-screen {
+  background: linear-gradient(135deg, var(--merc-black) 0%, #1a0000 100%);
+}
+
+.error-content h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--merc-teal);
+}
+
+.error-content p {
+  font-size: 1.2rem;
+  color: var(--merc-silver);
+  margin-bottom: 0.5rem;
+}
+
+.error-detail {
+  font-size: 1rem;
+  color: var(--merc-light-gray);
+}

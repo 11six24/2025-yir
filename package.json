@@ -1,0 +1,17 @@
+{
+  "name": "2025_ambassador_yir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "uuid": "^13.0.0",
+    "xlsx": "^0.18.5"
+  }
+}

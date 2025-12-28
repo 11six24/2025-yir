@@ -1,0 +1,87 @@
+.archetype-screen {
+  background: radial-gradient(circle at center, var(--merc-dark-gray) 0%, var(--merc-black) 100%);
+}
+
+.badge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.badge {
+  background: linear-gradient(135deg, var(--merc-dark-gray), var(--merc-black));
+  border: 3px solid var(--merc-teal);
+  border-radius: 30px;
+  padding: 3rem 2rem;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 210, 190, 0.2);
+}
+
+.badge-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.archetype-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--merc-teal), var(--merc-silver));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: lowercase;
+}
+
+.archetype-description {
+  font-size: 1.2rem;
+  color: var(--merc-silver);
+  line-height: 1.6;
+}
+
+.percentile-badge {
+  background: var(--merc-teal);
+  color: var(--merc-black);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.percentile-number {
+  font-size: 2rem;
+  margin: 0 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .badge {
+    padding: 2rem 1.5rem;
+  }
+
+  .archetype-title {
+    font-size: 2rem;
+  }
+
+  .archetype-description {
+    font-size: 1rem;
+  }
+
+  .percentile-badge {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .percentile-number {
+    font-size: 1.5rem;
+  }
+}

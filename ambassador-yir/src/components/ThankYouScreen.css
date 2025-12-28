@@ -1,0 +1,50 @@
+.thankyou-screen {
+  background: radial-gradient(circle at center, var(--merc-dark-gray) 0%, var(--merc-black) 100%);
+}
+
+.thank-you-text {
+  font-size: 1.5rem;
+  color: var(--merc-white);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.community-stat {
+  color: var(--merc-teal);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.thank-you-quote {
+  font-size: 1.3rem;
+  color: var(--merc-silver);
+  font-style: italic;
+  line-height: 1.6;
+  margin: 2rem 0;
+  padding: 2rem;
+  border-left: 4px solid var(--merc-teal);
+  background: var(--merc-dark-gray);
+  border-radius: 10px;
+}
+
+.signature {
+  font-size: 1.2rem;
+  color: var(--merc-silver);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .thank-you-text {
+    font-size: 1.2rem;
+  }
+
+  .community-stat {
+    font-size: 1.5rem;
+  }
+
+  .thank-you-quote {
+    font-size: 1.1rem;
+    padding: 1.5rem;
+  }
+}

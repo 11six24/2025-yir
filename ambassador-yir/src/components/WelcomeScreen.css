@@ -1,0 +1,64 @@
+.welcome-screen {
+  background: linear-gradient(135deg, var(--merc-black) 0%, var(--merc-dark-gray) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, var(--merc-teal) 2px, transparent 2px),
+    radial-gradient(circle, var(--merc-silver) 2px, transparent 2px);
+  background-size: 100px 100px, 150px 150px;
+  background-position: 0 0, 50px 50px;
+  animation: confetti-fall 10s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.display-name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--merc-teal), var(--merc-silver));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.welcome-headline {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: var(--merc-white);
+  text-transform: lowercase;
+}
+
+.welcome-subtext {
+  font-size: 1.2rem;
+  color: var(--merc-silver);
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .display-name {
+    font-size: 2.5rem;
+  }
+
+  .welcome-headline {
+    font-size: 1.8rem;
+  }
+
+  .welcome-subtext {
+    font-size: 1rem;
+  }
+}
