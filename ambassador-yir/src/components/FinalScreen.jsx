@@ -15,14 +15,14 @@ function FinalScreen({ data, onReset }) {
           Ready to take your ambassador game to the next level?
         </p>
         <div className="final-actions">
-          <a
+         {/*  <a
             href="https://11six24.com"
             className="cta-button"
             target="_blank"
             rel="noopener noreferrer"
           >
             View Ambassador Perks
-          </a>
+          </a> */}
           <button className="cta-button secondary" onClick={onReset}>
             View Again
           </button>

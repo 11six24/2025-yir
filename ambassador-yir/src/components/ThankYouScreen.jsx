@@ -14,7 +14,7 @@ function ThankYouScreen({ data, onNext }) {
         <p className="thank-you-quote">
           "Our ambassadors are the heart of 11SIX24. Thank you for being part of the journey."
         </p>
-        <p className="signature">— The 11SIX24 Team</p>
+        <p className="signature">— David Groechel Founder 11SIX24</p>
         <button className="cta-button" onClick={onNext}>
           Continue
         </button>
