@@ -145,8 +145,8 @@ export default {
 
         const allProducts = [];
 
-        // Fetch orders in parallel batches
-        const orderIds = referrals.results.slice(0, 50).map((r) => r.order_id);
+        // Fetch orders in parallel batches (no limit - queue has no timeout)
+        const orderIds = referrals.results.map((r) => r.order_id);
         const BATCH_SIZE = 10; // Fetch 10 orders at a time
 
         for (let i = 0; i < orderIds.length; i += BATCH_SIZE) {
