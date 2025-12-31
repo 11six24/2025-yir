@@ -94,17 +94,23 @@ export async function onRequest(context) {
       // Completed but no top models (no referrals)
       response.topModelsStatus = 'none';
     } else {
-      // Not processed yet - trigger background job
+      // Not processed yet - add to queue
       response.topModelsStatus = 'loading';
 
-      // Trigger processing (fire and forget)
-      context.waitUntil(
-        fetch(new URL('/api/process-ambassador', request.url), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ uuid }),
-        })
-      );
+      // Mark as processing
+      await db
+        .prepare(
+          `INSERT OR REPLACE INTO processing_status (ambassador_uuid, status, started_at)
+           VALUES (?, 'processing', datetime('now'))`
+        )
+        .bind(uuid)
+        .run();
+
+      // Send to queue for background processing
+      await env.TOP_MODELS_QUEUE.send({
+        uuid,
+        timestamp: new Date().toISOString()
+      });
     }
 
     return new Response(JSON.stringify(response), {

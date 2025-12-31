@@ -2,7 +2,7 @@ import './ThankYouScreen.css';
 
 function ThankYouScreen({ data, onNext }) {
   // Calculate total community impact (you can adjust this based on total ambassador data)
-  const communityImpact = 2409; // Total active ambassadors
+  const communityImpact = 4436; // Total active ambassadors
 
   return (
     <div className="screen thankyou-screen">

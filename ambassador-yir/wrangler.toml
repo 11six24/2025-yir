@@ -7,3 +7,15 @@ pages_build_output_dir = "dist"
 binding = "DB"
 database_name = "ambassador-yir-db"
 database_id = "1bf401ce-682c-487e-b60c-8a5820b7f42e"
+
+# Queue for background job processing
+[[queues.producers]]
+binding = "TOP_MODELS_QUEUE"
+queue = "top-models-queue"
+
+[[queues.consumers]]
+queue = "top-models-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+max_retries = 3
+dead_letter_queue = "top-models-dlq"
