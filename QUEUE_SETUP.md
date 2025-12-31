@@ -36,15 +36,33 @@ Add Queue Producer binding:
 
 The queue consumer is configured automatically via `wrangler.toml`.
 
-### 3. Deploy
+### 3. Deploy the Queue Consumer Worker
+
+The queue consumer must be deployed as a **separate Worker** (Pages Functions can't consume from queues):
 
 ```bash
+cd worker
+npx wrangler deploy
+```
+
+Set environment variables for the Worker:
+
+```bash
+npx wrangler secret put SHOPIFY_STORE_DOMAIN
+# Enter: your-store.myshopify.com
+
+npx wrangler secret put SHOPIFY_ACCESS_TOKEN
+# Enter: shpat_xxxxx
+```
+
+### 4. Deploy Pages (API that sends to queue)
+
+```bash
+cd ..
 git add .
 git commit -m "Add Cloudflare Queues for background processing"
 git push
 ```
-
-Cloudflare Pages will automatically detect the queue configuration and set it up.
 
 ## How It Works
 
