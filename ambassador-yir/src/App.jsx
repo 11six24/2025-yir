@@ -6,7 +6,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/:uuid" element={<YearInReview />} />
+        <Route path="/yir/:uuid" element={<YearInReview />} />
         <Route path="/" element={
           <div className="landing">
             <h1>Ambassador Year in Review 2025</h1>
