@@ -1,0 +1,8 @@
+name = "ambassador-yir"
+compatibility_date = "2025-01-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "ambassador-yir-db"
+database_id = "1bf401ce-682c-487e-b60c-8a5820b7f42e"
