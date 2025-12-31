@@ -182,18 +182,32 @@ export async function onRequestPost(context) {
         try {
           const allProducts = [];
 
-          // Fetch each order (limit to prevent timeout)
+          // Fetch orders in parallel batches (faster!)
           const orderIds = referrals.results.slice(0, 50).map((r) => r.order_id);
+          const BATCH_SIZE = 10; // Fetch 10 orders at a time
 
-          for (const orderId of orderIds) {
-            const order = await fetchOrderFromShopify(orderId, env);
-            if (order) {
-              const products = extractProducts(order);
-              allProducts.push(...products);
+          for (let i = 0; i < orderIds.length; i += BATCH_SIZE) {
+            const batch = orderIds.slice(i, i + BATCH_SIZE);
+
+            // Fetch this batch in parallel
+            const batchPromises = batch.map(orderId =>
+              fetchOrderFromShopify(orderId, env)
+            );
+
+            const batchResults = await Promise.all(batchPromises);
+
+            // Extract products from successful fetches
+            batchResults.forEach(order => {
+              if (order) {
+                const products = extractProducts(order);
+                allProducts.push(...products);
+              }
+            });
+
+            // Small delay between batches (not between individual requests)
+            if (i + BATCH_SIZE < orderIds.length) {
+              await new Promise((resolve) => setTimeout(resolve, 100));
             }
-
-            // Small delay for rate limiting
-            await new Promise((resolve) => setTimeout(resolve, 200));
           }
 
           // Calculate top models

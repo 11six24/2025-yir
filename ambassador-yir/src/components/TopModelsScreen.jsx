@@ -19,7 +19,7 @@ function TopModelsScreen({ data, onNext }) {
         <div className="screen-content">
           <h2 className="section-title">Loading Your Top Models...</h2>
           <div className="loading-spinner"></div>
-          <p className="loading-text">Fetching your product data from Shopify...</p>
+          <p className="loading-text">Fetching your product data...</p>
           <button className="cta-button secondary" onClick={onNext}>
             Skip
           </button>

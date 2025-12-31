@@ -37,18 +37,25 @@ function YearInReview() {
 
   const loadAmbassadorData = async () => {
     try {
-      // In production, use D1 API. In dev, use JSON fallback
-      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      // Use API in production, JSON only for local dev
+      const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
       let data;
 
-      if (isDev) {
-        // Dev: Load from static JSON
-        const response = await fetch('/ambassador-data.json');
-        const allData = await response.json();
-        data = allData[uuid];
+      if (isLocalDev) {
+        // Local dev: try JSON fallback
+        try {
+          const response = await fetch('/ambassador-data.json');
+          const allData = await response.json();
+          data = allData[uuid];
+        } catch (err) {
+          // If JSON doesn't exist, fall back to API
+          const response = await fetch(`/api/ambassador/${uuid}`);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          data = await response.json();
+        }
       } else {
-        // Production: Load from D1 API
+        // Production: Always use D1 API
         const response = await fetch(`/api/ambassador/${uuid}`);
 
         if (!response.ok) {
