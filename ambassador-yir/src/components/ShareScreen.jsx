@@ -43,6 +43,21 @@ function ShareScreen({ data, onNext, uuid }) {
               <h3 className="share-name">{data.name}</h3>
               <p className="share-archetype">{data.archetype.title}</p>
             </div>
+            {data.topModels && data.topModels.length > 0 && (
+              <div className="share-top-model">
+                {data.topModels[0].image && (
+                  <img
+                    src={data.topModels[0].image}
+                    alt={data.topModels[0].name}
+                    className="share-model-image"
+                  />
+                )}
+                <div className="share-model-info">
+                  <div className="share-model-label">Top Model</div>
+                  <div className="share-model-name">{data.topModels[0].name}</div>
+                </div>
+              </div>
+            )}
             <div className="share-stats">
               <div className="share-stat">
                 <div className="share-stat-number">{data.stats.orders.toLocaleString()}</div>

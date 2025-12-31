@@ -1670,7 +1670,21 @@
       "totalLogins": 60,
       "lastActive": "2025-11-25 11:18 PM"
     },
-    "program": "11SIX24 Paddle Ambassador YouTube Reviews"
+    "program": "11SIX24 Paddle Ambassador YouTube Reviews",
+    "topModels": [
+      {
+        "name": "Carbon Fiber Paddle - 16mm",
+        "count": 15
+      },
+      {
+        "name": "Kevlar Paddle - 14mm",
+        "count": 8
+      },
+      {
+        "name": "Raw Carbon Fiber Paddle - 16mm",
+        "count": 5
+      }
+    ]
   },
   "5685bd98-1a50-42cb-bd2a-870a394fe33c": {
     "name": "Craig Sukenic",

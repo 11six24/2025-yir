@@ -11,6 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@shopify/shopify-api": "^12.2.0",
+    "dotenv": "^17.2.3",
     "uuid": "^13.0.0",
     "xlsx": "^0.18.5"
   }

@@ -5,6 +5,7 @@ import WelcomeScreen from '../components/WelcomeScreen';
 import StatsScreen from '../components/StatsScreen';
 import ArchetypeScreen from '../components/ArchetypeScreen';
 import TimelineScreen from '../components/TimelineScreen';
+import TopModelsScreen from '../components/TopModelsScreen';
 import ThankYouScreen from '../components/ThankYouScreen';
 import ShareScreen from '../components/ShareScreen';
 import FinalScreen from '../components/FinalScreen';
@@ -17,6 +18,7 @@ const SCREENS = [
   'stats',
   'archetype',
   'timeline',
+  'topmodels',
   'thankyou',
   'share',
   'final'
@@ -35,11 +37,34 @@ function YearInReview() {
 
   const loadAmbassadorData = async () => {
     try {
-      const response = await fetch('/ambassador-data.json');
-      const allData = await response.json();
+      // In production, use D1 API. In dev, use JSON fallback
+      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-      if (allData[uuid]) {
-        setAmbassadorData(allData[uuid]);
+      let data;
+
+      if (isDev) {
+        // Dev: Load from static JSON
+        const response = await fetch('/ambassador-data.json');
+        const allData = await response.json();
+        data = allData[uuid];
+      } else {
+        // Production: Load from D1 API
+        const response = await fetch(`/api/ambassador/${uuid}`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        data = await response.json();
+
+        // If top models are loading, poll for updates
+        if (data.topModelsStatus === 'loading') {
+          pollForTopModels();
+        }
+      }
+
+      if (data) {
+        setAmbassadorData(data);
         setLoading(false);
       } else {
         setError(true);
@@ -50,6 +75,36 @@ function YearInReview() {
       setError(true);
       setLoading(false);
     }
+  };
+
+  const pollForTopModels = async () => {
+    // Poll every 3 seconds for up to 30 seconds
+    let attempts = 0;
+    const maxAttempts = 10;
+
+    const pollInterval = setInterval(async () => {
+      attempts++;
+
+      if (attempts > maxAttempts) {
+        clearInterval(pollInterval);
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/ambassador/${uuid}`);
+        if (!response.ok) return;
+
+        const data = await response.json();
+
+        // Update if status changed
+        if (data.topModelsStatus === 'ready' || data.topModelsStatus === 'none') {
+          setAmbassadorData(data);
+          clearInterval(pollInterval);
+        }
+      } catch (err) {
+        console.error('Poll error:', err);
+      }
+    }, 3000);
   };
 
   const nextScreen = () => {
@@ -120,6 +175,18 @@ function YearInReview() {
             transition={{ duration: 0.5 }}
           >
             <TimelineScreen data={ambassadorData} onNext={nextScreen} />
+          </motion.div>
+        )}
+
+        {currentScreen === 'topmodels' && (
+          <motion.div
+            key="topmodels"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
+          >
+            <TopModelsScreen data={ambassadorData} onNext={nextScreen} />
           </motion.div>
         )}
 

@@ -31,8 +31,18 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Excel source file (contains sensitive data)
+# Excel source files (contain sensitive data)
 uppromote_top_affiliate_102736 (16).xlsx
+uppromote_referral_102736 (1).xlsx
+
+# Shopify order data (cached API responses)
+order-products.json
+product-image-cache.json
+
+# D1 migration files (generated from data)
+d1-migration.sql
+d1-import.sql
+d1-referrals-import.sql
 
 # Generated CSV with links (contains UUIDs - optional to exclude)
 ambassador-links.csv
