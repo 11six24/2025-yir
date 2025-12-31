@@ -64,7 +64,8 @@ function YearInReview() {
 
         data = await response.json();
 
-        // If top models are loading, poll for updates
+        // Start background polling if top models are being processed
+        // This way they load while user goes through earlier screens
         if (data.topModelsStatus === 'loading') {
           pollForTopModels();
         }

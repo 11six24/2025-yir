@@ -16,22 +16,23 @@ if (!HUBSPOT_API_KEY) {
 const fs = require('fs');
 const ambassadorData = JSON.parse(fs.readFileSync('./ambassador-data.json', 'utf8'));
 
-// Load referrals data to check who has referrals
+// Load top affiliates data to check who has orders
 const xlsx = require('xlsx');
-const workbook = xlsx.readFile('./uppromote_referral_102736 (1).xlsx');
+const workbook = xlsx.readFile('./uppromote_top_affiliate_102736 (16).xlsx');
 const sheet = workbook.Sheets[workbook.SheetNames[0]];
-const referrals = xlsx.utils.sheet_to_json(sheet);
+const affiliates = xlsx.utils.sheet_to_json(sheet);
 
-// Count referrals per ambassador email
+// Get order counts per ambassador email from total_order column
 const referralCounts = {};
-referrals.forEach(row => {
-  const email = row['Affiliate Email']?.toLowerCase().trim();
-  if (email) {
-    referralCounts[email] = (referralCounts[email] || 0) + 1;
+affiliates.forEach(row => {
+  const email = row['email']?.toLowerCase().trim();
+  const totalOrders = parseInt(row['total_order']) || 0;
+  if (email && totalOrders > 0) {
+    referralCounts[email] = totalOrders;
   }
 });
 
-console.log(`📊 Found ${Object.keys(referralCounts).length} ambassadors with referrals`);
+console.log(`📊 Found ${Object.keys(referralCounts).length} ambassadors with orders`);
 
 // Filter ambassadors who have referrals
 const ambassadorsWithReferrals = Object.entries(ambassadorData)

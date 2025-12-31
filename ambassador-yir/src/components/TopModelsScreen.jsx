@@ -1,24 +1,29 @@
+import { motion } from 'framer-motion';
 import './TopModelsScreen.css';
 
 function TopModelsScreen({ data, onNext }) {
   // Check if ambassador has top models data
   const hasTopModels = data.topModels && data.topModels.length > 0;
   const isLoading = data.topModelsStatus === 'loading';
+  const hasNoReferrals = data.topModelsStatus === 'none';
 
-  // Skip if no models and not loading
-  if (!hasTopModels && !isLoading) {
+  // Auto-skip if they have no referrals at all
+  if (hasNoReferrals && !hasTopModels) {
     onNext();
     return null;
   }
 
-  // Show loading state
+  // If still loading when they reach this screen, show brief loading state
+  // (Should rarely happen now that we preload while they go through earlier screens)
+
+  // Show loading state (brief - data is preloading in background)
   if (isLoading) {
     return (
       <div className="screen top-models-screen">
         <div className="screen-content">
           <h2 className="section-title">Loading Your Top Models...</h2>
           <div className="loading-spinner"></div>
-          <p className="loading-text">Fetching your product data. This may take 2-60 seconds or more...</p>
+          <p className="loading-text">Almost ready! Analyzing your referrals...</p>
           <button className="cta-button secondary" onClick={onNext}>
             Skip
           </button>
