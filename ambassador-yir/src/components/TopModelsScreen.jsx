@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import './TopModelsScreen.css';
 
 function TopModelsScreen({ data, onNext }) {
@@ -19,7 +18,7 @@ function TopModelsScreen({ data, onNext }) {
         <div className="screen-content">
           <h2 className="section-title">Loading Your Top Models...</h2>
           <div className="loading-spinner"></div>
-          <p className="loading-text">Fetching your product data...</p>
+          <p className="loading-text">Fetching your product data. This may take 2-60 seconds or more...</p>
           <button className="cta-button secondary" onClick={onNext}>
             Skip
           </button>
