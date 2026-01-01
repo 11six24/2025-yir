@@ -3,7 +3,11 @@
     "allow": [
       "Bash(node parse-data.js:*)",
       "Bash(npm create vite:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npx wrangler d1 execute:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

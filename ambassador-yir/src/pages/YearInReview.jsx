@@ -86,9 +86,9 @@ function YearInReview() {
   };
 
   const pollForTopModels = async () => {
-    // Poll every 3 seconds for up to 30 seconds
+    // Poll every 3 seconds for up to 3 minutes (enough for large order counts)
     let attempts = 0;
-    const maxAttempts = 10;
+    const maxAttempts = 60;
 
     const pollInterval = setInterval(async () => {
       attempts++;
